@@ -1,39 +1,24 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from './HomeScreen';
-
-const Stack = createNativeStackNavigator();
+import { SafeAreaView, View, Text } from 'react-native';
+import PdfPicker from './components/PdfPicker';
+import SubmitButton from './components/SubmitButton';
 
 const App = () => {
+  const handlePdfSubmission = (selectedPdf) => {
+    // Handle the submission logic here
+    console.log('Selected PDF:', selectedPdf);
+    // Implement your submission logic, e.g., send the PDF to a server
+  };
+
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: '#1B4242', // Aqua green color for the header
-          },
-          headerTitleAlign: 'center',
-          headerTitleStyle: {
-            color: 'white', // Text color for the header title
-          },
-        }}
-      >
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{
-            title: 'File Uploader',
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <SafeAreaView>
+      <View>
+        <Text>PDF Submission App</Text>
+        <PdfPicker onPdfSelected={handlePdfSubmission} />
+        <SubmitButton onPress={() => handlePdfSubmission} />
+      </View>
+    </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  // Your styles here
-});
 
 export default App;
